@@ -5,16 +5,16 @@ const App = () => {
   const { count } = useSelector(state => state.counter);
   const dispatch = useDispatch();
 
-  const onIncrement = () => {
-    dispatch(increment());
+  const onIncrement = (value) => {
+    dispatch(increment(value));
   };
 
   const onReset = () => {
     dispatch(reset());
   };
 
-  const onDecrement = () => {
-    dispatch(decrement());
+  const onDecrement = (value) => {
+    dispatch(decrement(value));
   };
 
   return (
@@ -26,16 +26,16 @@ const App = () => {
         <h2>Counter: <span className="orange">{ count }</span></h2>
         <button
           className="btn"
-          onClick={ onIncrement }
-        >Increment</button>
+          onClick={ () => onIncrement(10) }
+        >+10</button>
         <button
           className="btn mx-1"
           onClick={ onReset }
         >Reset</button>
         <button
           className="btn"
-          onClick={ onDecrement }
-        >Decrement</button>
+          onClick={ () => onDecrement(10) }
+        >-10</button>
       </div>
 
     </div>
