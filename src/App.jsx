@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement, reset } from "./store/slices/counter";
 
 const App = () => {
-  const [counter, setCounter] = useState(0);
+  const { count } = useSelector(state => state.counter);
+  const dispatch = useDispatch();
 
   const onIncrement = () => {
-    setCounter(counter + 1);
+    dispatch(increment());
   };
 
   const onReset = () => {
-    setCounter(0);
+    dispatch(reset());
   };
 
   const onDecrement = () => {
-    counter > 0 && setCounter(counter - 1);
+    dispatch(decrement());
   };
 
   return (
@@ -21,7 +23,7 @@ const App = () => {
       <hr />
 
       <div className="center">
-        <h2>Counter: <span className="orange">{ counter }</span></h2>
+        <h2>Counter: <span className="orange">{ count }</span></h2>
         <button
           className="btn"
           onClick={ onIncrement }
