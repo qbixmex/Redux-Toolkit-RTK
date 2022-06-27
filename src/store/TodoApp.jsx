@@ -1,7 +1,29 @@
-import { useGetTodosQuery } from "./apis";
+import { useState } from "react";
+// import { useGetTodosQuery } from "./apis";
+import { useGetTodoQuery } from "./apis";
 
 export const TodoApp = () => {
-  const { data: todos = [], isLoading } = useGetTodosQuery();
+
+  const [ id, setId ] = useState(1);
+
+  // TODOS List
+  // const { data: todos = [], isLoading } = useGetTodosQuery();
+
+  // Single Todo
+  const { data: todo, isLoading, isSuccess } = useGetTodoQuery(id);
+
+  const nextTodo = () => {
+    setId(id + 1);
+  };
+
+  const resetTodo = () => {
+    setId(1);
+  };
+
+  const previousTodo = () => {
+    if (id === 1) return;  
+    setId(id - 1);
+  };
 
   return (
     <div className="container">
@@ -14,11 +36,55 @@ export const TodoApp = () => {
             ? <span className="green">True</span>
             : <span className="red">False</span>
         }
-      </p>
+      </p>      
 
-      <pre>...</pre>
+      {
+        isSuccess &&
+        <>
+          <h2>{ todo.title }</h2>
+          <p>
+            <b>Completed:&nbsp;
+            {
+              todo.completed
+                ? <span className="green">Done</span>
+                : <span className="orange">Pending</span>
+            }
+            </b>
+          </p>
+        </>
+      }
 
-      <ul>
+      <hr />
+
+      <pre>{ JSON.stringify(todo, null, 2) }</pre>
+
+      <hr />
+
+      <div className="mt-2">
+        <button
+          className="btn btn-blue"
+          onClick={ previousTodo }
+        >
+          Previous
+        </button>
+
+        <button
+          className="btn btn-blue mx-1"
+          onClick={ resetTodo }
+        >
+          Reset
+        </button>
+        
+        <button
+          className="btn btn-blue"
+          onClick={ nextTodo }
+        >
+          Next
+        </button>
+      </div>
+
+      {/* TODOS List */}
+      {/* <ul>
         {
           todos.map( todo => (
             <li key={ todo.id }>
@@ -32,13 +98,8 @@ export const TodoApp = () => {
             </li>
           ))
         }
-      </ul>
+      </ul> */}
 
-      <div className="mt-2">
-        <button className="btn btn-blue">
-          Next Todo
-        </button>
-      </div>
     </div>
   );
 };
