@@ -1,3 +1,8 @@
+:root {
+  --skyblue: hsl(200, 85%, 52%);
+  --skyblue-dark: hsl(200, 85%, 40%);
+  --orange: hsl(40, 90%, 45%);
+}
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -27,10 +32,12 @@ h1 {
   border: none;
   background-color: #ccc;
   color: #333;
+  font-weight: bold;
+  box-shadow: 0px 0px 15px 5px rgba(0, 0, 0, 0.5);
   padding: .5rem .75rem;
   border-radius: 5px;
-  font-size: 1.2rem;
-  transition: background-color .25s ease-in-out;
+  font-size: 1.1rem;
+  transition: all .2s ease-in-out;
 }
 
 .btn:hover {
@@ -38,8 +45,25 @@ h1 {
   color: #eee;
 }
 
-.orange {
-  color: hsl(40, 90%, 45%);
+.btn-blue {
+  border-color: var(--skyblue-dark);
+  background-color: var(--skyblue);
+  color: #eee;
+}
+
+.btn-blue:hover {
+  background-color: var(--skyblue-dark);
+  color: #ddd;
+}
+
+.orange { color: var(--orange); }
+.skyblue { color: var(--skyblue); }
+.skyblue-dark { color: var(--skyblue-dark); }
+
+.loading {
+  font-size: 1.4rem;
+  color: var(--skyblue);
+  font-weight: bold;
 }
 
 .mx-1 {
