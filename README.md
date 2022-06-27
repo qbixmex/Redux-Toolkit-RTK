@@ -1,6 +1,6 @@
 # Redux Toolkit tutorial
 
-This is a Redux Toolkit tutorial for React 18
+This is a Redux Toolkit tutorial for React 18 with RTK Query
 
 ## Install Dependencies
 
